@@ -29,7 +29,7 @@ router.get('/prizes/:id', async (req, res) => {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
         const prize = await prizeCollection.findOne({ _id });
-        if(!prize.value) {
+        if(!prize || !prize.value) {
             return res.status(404).send({ error: 'Id not found' });
         }
         res.send(prize);
@@ -49,7 +49,7 @@ router.patch('/prizes/:id', async (req, res) => {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
         const prize = await prizeCollection.findOneAndUpdate({ _id }, { $set: req.body }, { returnOriginal : false });
-        if(!prize.value) {
+        if(!prize || !prize.value) {
             return res.status(404).send({ error: 'Id not found' });
         }
         res.send(prize);
@@ -63,7 +63,7 @@ router.delete('/prizes/:id', async (req, res) => {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
         const prize = await prizeCollection.findOneAndDelete({ _id });
-        if(!prize.value) {
+        if(!prize || !prize.value) {
             return res.status(404).send({ error: 'Id not found' });
         }
         res.send(prize);

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/app.js"
+    "dev": "env-cmd -f ./config/dev.env nodemon src/app.js",
+    "debug": "env-cmd -f ./config/dev.env node --inspect-brk  src/app.js"
   },
   "keywords": [],
   "author": "",
