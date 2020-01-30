@@ -1,10 +1,15 @@
 const express = require('express');
 
+
+const prizeRouter = require('./routers/prize');
+
 const app = express();
 const port = process.env.PORT || 4000;
 
-
+// Body parser
 app.use(express.json());
+// Routers
+app.use(prizeRouter);
 
 app.get('', async (req, res) => {
     res.send('Hello from home');
