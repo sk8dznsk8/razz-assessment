@@ -4,7 +4,7 @@ const express = require('express');
 const prizeRouter = require('./routers/prize');
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
 
 // Body parser
 app.use(express.json());

@@ -31,12 +31,10 @@ db.createCollection("Prize", {
 */
 
 const MongoClient = require('../mongodb')();
-
-const dbName = 'razz-assessment';
 const collection = 'Prize';
 
 const prize = async () => {
-    return (await MongoClient).db(dbName).collection(collection);
+    return (await MongoClient).db().collection(collection);
 }
 
 module.exports = prize;
