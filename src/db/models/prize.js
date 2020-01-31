@@ -33,6 +33,8 @@ const collection = 'Prize';
 
 const prize = async () => {
    const db = (await MongoClient).db();
+   // The validator command is a ONE-TIME run, so it could be placed somewhere else in order to be executed once
+   // I decided to leave it here to simplify and make sure that the code will execute and apply the validator
    const names = await db.listCollections({ name: collection }, { nameOnly: true }).toArray();
    if(names.length === 0) {
       await db.createCollection(collection);

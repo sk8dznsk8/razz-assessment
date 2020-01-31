@@ -29,7 +29,7 @@ router.get('/prizes/:id', async (req, res) => {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
         const prize = await prizeCollection.findOne({ _id });
-        if(!prize || !prize.value) {
+        if(!prize) {
             return res.status(404).send({ error: 'Id not found' });
         }
         res.send(prize);
@@ -49,6 +49,24 @@ router.patch('/prizes/:id', async (req, res) => {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
         const prize = await prizeCollection.findOneAndUpdate({ _id }, { $set: req.body }, { returnOriginal : false });
+        if(!prize || !prize.value) {
+            return res.status(404).send({ error: 'Id not found' });
+        }
+        res.send(prize);
+    } catch (error) {
+        res.status(400).send({ error: error.toString() });
+    }
+});
+
+router.patch('/prizes/decrement/:id', async (req, res) => {
+    try {
+        const _id = new ObjectID(req.params.id);
+        const prizeCollection = await fetchPrizeCollection();
+        const prize = await prizeCollection.findOneAndUpdate(
+            { _id, quantity: { $gt: 0 } },
+            { $inc: { quantity: -1 } },
+            { returnOriginal : false }
+        );
         if(!prize || !prize.value) {
             return res.status(404).send({ error: 'Id not found' });
         }
