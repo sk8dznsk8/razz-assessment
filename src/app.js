@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const prizeRouter = require('./routers/prize');
 
@@ -12,7 +13,7 @@ app.use(cors());
 app.use(prizeRouter);
 
 app.get('*', async (req, res) => {
-    res.send('Not Found 404 Page');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
