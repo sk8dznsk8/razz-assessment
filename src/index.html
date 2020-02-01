@@ -59,6 +59,26 @@ tr:nth-child(even) {
         <td>DELETE</td>
         <td>Delete specific prize by id</td>
     </tr>
+    <tr>
+        <td>/users/signup</td>
+        <td>POST</td>
+        <td>Create an user if email has valid format or not registered. Return back encrypted user and token.</td>
+    </tr>
+    <tr>
+        <td>/users/login</td>
+        <td>POST</td>
+        <td>Login user if email and password match. Return back encrypted user and token.</td>
+    </tr>
+    <tr>
+        <td>/users/logout</td>
+        <td>POST</td>
+        <td>Logout user and remove current token from database.</td>
+    </tr>
+    <tr>
+        <td>/users/logoutAll</td>
+        <td>POST</td>
+        <td>Logout user and remove all tokens from database.</td>
+    </tr>
 </table>
 
 </body>

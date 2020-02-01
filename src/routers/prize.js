@@ -1,6 +1,7 @@
 const express = require('express');
 const { ObjectID } = require('mongodb');
 const fetchPrizeCollection = require('../db/models/prize');
+const auth = require('../middleware/auth');
 
 const router = new express.Router();
 
@@ -58,7 +59,7 @@ router.patch('/prizes/:id', async (req, res) => {
     }
 });
 
-router.patch('/prizes/decrement/:id', async (req, res) => {
+router.patch('/prizes/decrement/:id', auth, async (req, res) => {
     try {
         const _id = new ObjectID(req.params.id);
         const prizeCollection = await fetchPrizeCollection();
